@@ -16,7 +16,7 @@ newlagmatrix <- function(x, nlags, c = 0) {
   # COMMENTS:
   #     Original name, 'lagmatrix' conflicts with a Matlab file, so newlagmatrix replaces original 
   
-  if (length(c) != 1 || any(c != 0 && any(c != 1))) {
+  if (length(c) != 1 || !(c %in% c(0, 1))) {
     stop('C must be 1 or 0')
   }
   
