@@ -1,15 +1,13 @@
-##This founction calculates lag-1 autocorrelation of Ranks of data and
-#transform it to the autocorrelation of Normalized data.
-ac1ranks <- function(x){
-  
+ac1ranks <- function(x) {
   # Calculate ranks
   ranks <- rank(x, ties.method = "average")
   
-  # Calculate autocorrelation of ranks at lag 1
+  # Calculate lag-1 autocorrelation of ranks
   ac_ranks <- acf(ranks, plot = FALSE, type = "correlation", lag.max = 1)$acf[2]
   
-  # Transform to autocorrelation of normalized data
-  ac1 <- ac_ranks
+  # Transform rank autocorrelation to Pearson autocorrelation
+  # Standard conversion under bivariate normality: r = 2 * sin(pi/6 * rho_s)
+  ac1 <- 2 * sin((pi / 6) * ac_ranks)
   
   return(ac1)
 }
