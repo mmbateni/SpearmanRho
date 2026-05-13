@@ -40,7 +40,6 @@
 spearman_rho_modified <- function(v, alpha = 0.05, ac_correction = FALSE){
   
   # Rank the data
-  v <- v[order(v)]
   ranks <- rank(v)
   
   n <- length(v)
